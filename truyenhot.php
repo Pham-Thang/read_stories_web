@@ -20,7 +20,7 @@
 					<a href="doc.php?id=' . $row['story_id'] . '"><img class="img-responsive pic-in" src="' . $row['story_image'] . '" alt=" " ></a>
 					
 					<p>' . $row['story_name'] . '</p>
-					<span>New  | <a href="doc.php?id=' . $row['story_id'] . '">Đọc truyện</a></span>
+					<span>HOT  | <a href="doc.php?id=' . $row['story_id'] . '">Đọc truyện</a></span>
 				</div>
 			';
 			if ($temp % 4 == 0) {

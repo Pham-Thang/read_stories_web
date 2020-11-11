@@ -8,7 +8,7 @@
 					<div class="para-an"><h3>TRUYỆN MỚI NHẤT</h3></div>
 					<div class="manga-in">
 						<?php include 'config.php';
-							$stmt = $conn->prepare("SELECT * FROM `stories` ORDER BY story_id DESC LIMIT 6;");
+							$stmt = $conn->prepare("SELECT * FROM `stories` ORDER BY story_id DESC LIMIT 9;");
 							$temp = 1;
 							$stmt->execute();
 							$result = $stmt->get_result();
@@ -38,15 +38,23 @@
 			<div class="col-md-3 col-m-left">
 				<div class="in-left">
 					<p class="code">TRUYỆN ĐỀ CỬ</p>
+					<a href="truyenhot.php" class="know-more">Xem thêm</a>
 				</div>
-				<div class="discount">
-					<a href="#"><img class="img-responsive pic-in" src="images/p2.jpg" alt=" "> </a>
-					<a href="#" class="know-more">Xem thêm</a>
-				</div>
-				<div class="discount">
-					<a href="#"><img class="img-responsive pic-in" src="images/p3.jpg" alt=" "></a>
-					<a href="#" class="know-more">Xem thêm</a>
-				</div>
+				<?php include 'config.php';
+					$stmt = $conn->prepare("SELECT * FROM Stories ORDER BY view DESC LIMIT 2;");
+					$stmt->execute();
+					$result = $stmt->get_result();
+					while ($row = $result->fetch_assoc()) {
+						echo '
+							<div class="discount">
+								<a href="doc.php?id=' . $row['story_id'] . '"><img class="img-responsive pic-in" src="' . $row['story_image'] . '" alt=" " ></a>
+								<p>' . $row['story_name'] . '</p>
+								<span><b>HOT</b>  | <a href="doc.php?id=' . $row['story_id'] . '">Đọc truyện</a></span>
+							</div>
+						';
+					}
+					$conn->close();
+				?>
 				<div class="infor-in">
 					<h5>Thông tin trang web</h5>
 					<div class="info">
